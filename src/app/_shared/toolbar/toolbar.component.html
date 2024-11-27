@@ -1,0 +1,10 @@
+<header class="toolbar">
+    <h1 class="title">EventBall</h1>
+    <span class="spacer"></span>
+    <button mat-button [matMenuTriggerFor]="userMenu" class="user" >User</button>
+    <mat-menu #userMenu="matMenu" class="user-menu">
+        <button mat-menu-item>Create Event</button>
+        <button mat-menu-item>Log Out</button>
+    </mat-menu>
+</header>
+
