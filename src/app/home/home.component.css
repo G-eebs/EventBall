@@ -1,0 +1,24 @@
+.featured-events {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.featured-events-heading {
+    margin: 1rem 0;
+}
+
+.featured-events-list {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.featured-event-listed {
+    list-style: none;
+    margin: 1rem 0;
+}

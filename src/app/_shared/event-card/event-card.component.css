@@ -1,0 +1,60 @@
+.event-card {
+    max-height: 10rem;
+    padding: .5rem;
+    background-color: #D91656;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    grid-template-rows: 1fr;
+    column-gap: .5rem;
+    border-radius: 1.5rem;
+    box-shadow: .25rem .25rem .5rem rgba(0, 0, 0, 0.5);
+}
+
+.event-card-image {
+    grid-column: 1;
+    grid-row: 1;
+    height: 100%;
+    max-height: inherit;
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: .25rem .25rem .5rem rgba(0, 0, 0, 0.25);
+}
+
+.event-card-text {
+    grid-column: 1;
+    grid-row: 1;
+    padding: .5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow: hidden;
+    gap: .5rem;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgb(255, 255, 255));
+}
+
+.event-card-text-title {
+    margin: 0.5rem 0 0;
+    padding: .5rem;
+    border-radius: 1rem;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.event-card-text-summary {
+    margin: 0 0 1.5rem;
+    padding-top: 0;
+}
+
+.event-card-attend-button {
+    grid-column: 2;
+    grid-row: 1;
+    margin: auto;
+    text-wrap: nowrap;
+}
