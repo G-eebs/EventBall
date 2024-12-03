@@ -1,0 +1,10 @@
+[build]
+  publish = "dist/event-ball/browser"
+  command = "ng build --prod"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+[functions]
+  directory = "src/netlify-functions"
+  node_bundler = "esbuild"
