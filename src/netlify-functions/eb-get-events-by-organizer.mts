@@ -20,11 +20,13 @@ export default async (req: Request, context: Context) => {
       }
     });
     if (!response.ok) {
+      console.error(response)
       throw new Error(`Response status: ${response.status}`);
     }
     const events: any = await response.json()
     return new Response(JSON.stringify(events.events), {status: 200})
   } catch (err: any) {
+    console.error(err)
     return new Response(JSON.stringify({error: err.message}), {status: err.statusCode || 500})    
   }
 }
