@@ -2,6 +2,10 @@
   publish = "dist/event-ball/browser"
   command = "ng build"
 [[redirects]]
+  from = "/eb-get-events-by-organizer/*"
+  to = "/eb-get-events-by-organizer/:splat"
+  status = 200
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
