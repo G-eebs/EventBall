@@ -1,5 +1,4 @@
 import type { Config, Context } from "@netlify/functions";
-import fetch from 'node-fetch';
 
 export const config: Config = {
     path: "/eb-get-events-by-organizer/:organizer_id"
