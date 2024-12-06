@@ -21,6 +21,6 @@ export default async (req: Request, context: Context) => {
     return new Response(JSON.stringify(response.data), {status: response.status});
   } catch (err: any) {
     console.error(err)
-    return new Response(JSON.stringify({error: err.message}), {status: err.statusCode || 500})    
+    return new Response(JSON.stringify({error: err.message}), {status: err.statusCode || 500})
   }
 }

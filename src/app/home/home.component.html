@@ -1,15 +1,14 @@
 <section class="featured-events">
     <h2 class="featured-events-heading">Events Happening Soon!</h2>
-    <ul class="featured-events-list">
-        <li>{{events$ | async}}</li>
-        <li class="featured-event-listed"><app-event-card /></li>
-        <li class="featured-event-listed"><app-event-card /></li>
-        <li class="featured-event-listed"><app-event-card /></li>
-        <li class="featured-event-listed"><app-event-card /></li>
-        <li class="featured-event-listed"><app-event-card /></li>
-        <li class="featured-event-listed"><app-event-card /></li>
-        <li class="featured-event-listed"><app-event-card /></li>
-        <li class="featured-event-listed"><app-event-card /></li>
-        <li class="featured-event-listed"><app-event-card /></li>
-    </ul>
+    @if(events$ | async; as events) {
+        <ul class="featured-events-list">
+            @for(event of events; track event.id) {
+                <li class="featured-event-listed">
+                    <app-event-card [event]="event"></app-event-card>
+                </li>
+            }
+        </ul>
+    } @else {
+        <h3>Loading</h3>
+    }
 </section>
