@@ -1,8 +1,21 @@
 <article class="event-card">
-    <img src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F906018593%2F2517053640201%2F1%2Foriginal.png?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C940%2C470&s=7e1d320a3e7c98edd292813a0b99bb34" alt="Event banner image" class="event-card-image" />
-    <div class="event-card-text">
-        <h3 class="event-card-text-title">Event Name</h3>
-        <section class="event-card-text-summary">Et similique voluptatem nihil reprehenderit ullam aliquam delectus. Quis sed aut suscipit consequuntur quae. Repellendus dolores et aut quia numquam cupiditate.</section>
+    <img [src]="imgSrc" alt="Event banner image" class="event-card-image" />
+    <section class="event-card-info">
+        <h3 class="event-card-info-title">{{ event().name.text }}</h3>
+        <p class="event-card-info-date">{{ event().start.local | date }}</p>
+        <p class="event-card-info-organizer">{{ event().organizer.name }}</p>
+        <div class="event-card-info-location">
+            @if (event().venue; as venue) {
+                @for (addressLine of venue.address.localized_multi_line_address_display; track $index) {
+                    <p class="event-card-info-location-line">{{ addressLine }}</p>
+                }
+            } @else {
+                <p class="event-card-info-location-line">Online</p>
+            }
+        </div>
+    </section>
+    <div class="event-card-buttons">
+        <button mat-raised-button class="event-card-buttons-more">More Info</button>
+        <button mat-raised-button class="event-card-buttons-attend">Sign Up</button>
     </div>
-    <button mat-raised-button class="event-card-attend-button">Sign Up</button>
 </article>

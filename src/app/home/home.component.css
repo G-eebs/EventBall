@@ -1,5 +1,5 @@
 .featured-events {
-    width: 90%;
+    width: 95%;
     max-width: 800px;
     margin: 0 auto;
     display: flex;
@@ -9,7 +9,7 @@
 }
 
 .featured-events-heading {
-    margin: 1rem 0;
+    margin: 1rem 0 0;
 }
 
 .featured-events-list {
