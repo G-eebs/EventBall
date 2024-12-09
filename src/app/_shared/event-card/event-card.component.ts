@@ -1,11 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { MatButton } from '@angular/material/button';
+import { MatAnchor, MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-event-card',
-  imports: [MatButton, DatePipe, RouterLink],
+  imports: [MatButton, MatAnchor, DatePipe, RouterLink],
   templateUrl: './event-card.component.html',
   styleUrl: './event-card.component.css',
 })

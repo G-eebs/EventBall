@@ -15,7 +15,7 @@
         </div>
     </section>
     <div class="event-card-buttons">
-        <button [routerLink]="['/events', event().id]" mat-raised-button class="event-card-buttons-more">More Info</button>
+        <a [routerLink]="['/events', event().id]" mat-raised-button class="event-card-buttons-more">More Info</a>
         <button mat-raised-button class="event-card-buttons-attend">Sign Up</button>
     </div>
 </article>
