@@ -1,14 +1,22 @@
 [build]
   publish = "dist/event-ball/browser"
   command = "ng build"
+[functions]
+  directory = "src/netlify-functions"
+  node_bundler = "esbuild"
 [[redirects]]
   from = "/eb-get-events-by-organizer/*"
   to = "/eb-get-events-by-organizer/:splat"
   status = 200
 [[redirects]]
+  from = "/eb-get-event-by-id/*"
+  to = "/eb-get-event-by-id/:splat"
+  status = 200
+[[redirects]]
+  from = "/eb-get-event-description-by-id/*"
+  to = "/eb-get-event-description-by-id/:splat"
+  status = 200
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-[functions]
-  directory = "src/netlify-functions"
-  node_bundler = "esbuild"
