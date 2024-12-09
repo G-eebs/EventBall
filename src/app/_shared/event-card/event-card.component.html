@@ -1,5 +1,5 @@
 <article class="event-card">
-    <img [src]="imgSrc" alt="Event banner image" class="event-card-image" />
+    <img [src]="bannerSrc" alt="Event banner image" class="event-card-image" />
     <section class="event-card-info">
         <h3 class="event-card-info-title">{{ event().name.text }}</h3>
         <p class="event-card-info-date">{{ event().start.local | date }}</p>
@@ -15,7 +15,7 @@
         </div>
     </section>
     <div class="event-card-buttons">
-        <button mat-raised-button class="event-card-buttons-more">More Info</button>
+        <button [routerLink]="['/events', event().id]" mat-raised-button class="event-card-buttons-more">More Info</button>
         <button mat-raised-button class="event-card-buttons-attend">Sign Up</button>
     </div>
 </article>

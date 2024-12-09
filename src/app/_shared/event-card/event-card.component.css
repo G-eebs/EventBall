@@ -10,6 +10,7 @@
     column-gap: .5rem;
     border-radius: 1.5rem;
     box-shadow: .25rem .25rem .5rem rgba(0, 0, 0, 0.5);
+    line-height: 1.25rem;
 }
 
 .event-card:hover {
