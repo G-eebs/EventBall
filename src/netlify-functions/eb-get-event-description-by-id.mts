@@ -2,15 +2,14 @@ import type { Config, Context } from "@netlify/functions";
 import axios from "axios";
 
 export const config: Config = {
-  path: "/eb-get-events-by-organizer/:organizer_id",
+  path: "/eb-get-event-description-by-id/:event_id/description",
 };
 
 export default async (req: Request, context: Context) => {
   const accessToken = Netlify.env.get("EVENTBRITE_PRIVATE_TOKEN");
   const apiBase = "https://www.eventbriteapi.com/v3";
-  const { organizer_id } = context.params;
-  const queries = context.url.search;
-  const url = `${apiBase}/organizers/${organizer_id}/events${queries}`;
+  const { event_id } = context.params;
+  const url = `${apiBase}/events/${event_id}/description`;
 
   try {
     const response = await axios.get(url, {
