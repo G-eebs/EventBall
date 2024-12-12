@@ -17,9 +17,11 @@
     padding: .5rem;
     margin: 0;
     font-size: x-large;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
     border-radius: .5rem;
     background-color: #FFB200;
-    cursor: pointer;
 }
 
 .spacer {

@@ -114,4 +114,5 @@
 .event-card-buttons-more {
     padding: 0 .5rem;
     text-wrap: wrap;
+    text-align: center;
 }

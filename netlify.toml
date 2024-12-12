@@ -17,6 +17,26 @@
   to = "/eb-get-event-description-by-id/:splat"
   status = 200
 [[redirects]]
+  from = "/eb-post-venue-to-organization/*"
+  to = "/eb-post-venue-to-organization/:splat"
+  status = 200
+[[redirects]]
+  from = "/eb-post-event-to-organization/*"
+  to = "/eb-post-event-to-organization/:splat"
+  status = 200
+[[redirects]]
+  from = "/eb-post-ticket-class-to-event/*"
+  to = "/eb-post-ticket-class-to-event/:splat"
+  status = 200
+[[redirects]]
+  from = "/eb-post-content-to-event/*"
+  to = "/eb-post-content-to-event/:splat"
+  status = 200
+[[redirects]]
+  from = "/eb-post-publish-event/*"
+  to = "/eb-post-publish-event/:splat"
+  status = 200
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

@@ -1,0 +1,51 @@
+.event-form {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-wrap: wrap;
+  column-gap: .5rem;
+}
+
+.event-form-field-long {
+  width: 100%;
+}
+
+.event-form-field-short {
+  width: fit-content;
+}
+
+.event-form-date-input {
+  width: fit-content;
+}
+
+.event-form-break {
+  flex-basis: 100%; 
+  height: 0; 
+  margin: 0; 
+  border: 0;
+}
+
+.event-form-subheading {
+  width: 100%;
+  margin: 0 0 1rem;
+}
+
+.event-form-checkbox {
+  margin: 0 0 1rem;
+}
+
+.event-form-submit {
+  margin: 0 0 0 auto;
+}
+
+mat-hint {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.event-form-summary-length-error {
+  float: right;
+}
+
+.event-form-custom-error {
+  color: rgb(244, 67, 54);
+}
