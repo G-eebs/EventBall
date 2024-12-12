@@ -1,0 +1,20 @@
+.create-event {
+    width: 95%;
+    max-width: 800px;
+    margin: 0 auto .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-event-heading {
+  margin: 1rem 0;
+  max-width: calc(100% - 1.5rem);
+  width: fit-content;
+  text-align: center;
+  padding: .1rem .5rem .25rem;
+  border-radius: .5rem;
+  color: white;
+  background-color: #D91656;
+}

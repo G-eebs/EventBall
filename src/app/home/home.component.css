@@ -10,6 +10,13 @@
 
 .featured-events-heading {
     margin: 1rem 0 0;
+    max-width: calc(100% - 1.5rem);
+    width: fit-content;
+    text-align: center;
+    padding: .1rem .5rem .25rem;
+    border-radius: .5rem;
+    color: white;
+    background-color: #D91656;
 }
 
 .featured-events-list {
