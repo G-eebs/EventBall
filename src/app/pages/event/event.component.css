@@ -103,3 +103,11 @@
 .event-description-text {
   margin: 0;
 }
+
+.progress-spinner {
+  margin: 1rem;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #FFB200;
+}

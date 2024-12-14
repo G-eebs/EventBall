@@ -3,10 +3,11 @@ import { EventsService } from '../../services/events/events.service';
 import { firstValueFrom, Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe, DatePipe, NgStyle } from '@angular/common';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-event',
-  imports: [AsyncPipe, NgStyle, DatePipe],
+  imports: [AsyncPipe, NgStyle, DatePipe, MatProgressSpinner],
   templateUrl: './event.component.html',
   styleUrl: './event.component.css',
 })
