@@ -5,9 +5,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { TextFieldModule } from '@angular/cdk/text-field'; 
-import { endAfterStartValidator } from '../../_shared/validators/end-after-start.directive';
-import { futureStartValidator } from '../../_shared/validators/future-start.directive';
-import { EventsService } from '../../services/events/events.service';
+import { endAfterStartValidator } from '../../../shared/validators/end-after-start.directive';
+import { futureStartValidator } from '../../../shared/validators/future-start.directive';
+import { EventsService } from '../../../services/events/events.service';
 import { Observable } from 'rxjs';
 import iso3166_1 from "iso-3166-1"
 import iso3166_2 from "iso-3166-2"
