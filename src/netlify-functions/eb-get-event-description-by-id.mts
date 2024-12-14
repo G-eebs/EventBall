@@ -22,8 +22,12 @@ export default async (req: Request, context: Context) => {
     });
   } catch (err: any) {
     console.error(err);
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: err.statusCode || 500,
+    return new Response(JSON.stringify({
+       error: {
+        message: err.message,
+        description: err.response.data.error_description} 
+      }), {
+      status: err.status || 500,
     });
   }
 };

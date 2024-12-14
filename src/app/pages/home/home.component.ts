@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { EventCardComponent } from '../_shared/event-card/event-card.component';
-import { EventsService } from '../services/events/events.service';
+import { EventCardComponent } from '../../shared/event-card/event-card.component';
+import { EventsService } from '../../services/events/events.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import organizers from '../../assets/event-brite-organizers.json';
+import organizers from '../../../assets/event-brite-organizers.json';
 
 @Component({
   selector: 'app-home',

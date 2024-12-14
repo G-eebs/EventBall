@@ -1,0 +1,24 @@
+.error {
+  height: calc(100vh - 5rem - 2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: hsl(303, 77%, 15%);
+}
+
+.error-heading {
+  margin: 1rem 0 0;
+}
+
+.error-status {
+  margin: 1rem 0 0;
+}
+
+.error-message {
+  margin: 1.5rem 0 0;
+}
+
+.error-description {
+  margin: 0.5rem 0 0;
+}

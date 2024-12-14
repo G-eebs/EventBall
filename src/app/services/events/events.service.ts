@@ -27,19 +27,12 @@ export class EventsService {
     params: any = this.defaultGetOrganizerEventsParams
   ) {
     const allEvents = [];
-    try {
-      for (let id of ids) {
-        const res = await firstValueFrom(this.getEventsByOrganizer(id, params));
-        allEvents.push(...res.events);
-      }
-      allEvents.sort((a, b) => a.start.utc - b.start.utc);
-      return allEvents;
-    } catch (err: any) {
-      console.error(err);
-      return new Response(JSON.stringify({ error: err.message }), {
-        status: err.statusCode || 500,
-      });
+    for (let id of ids) {
+      const res = await firstValueFrom(this.getEventsByOrganizer(id, params));
+      allEvents.push(...res.events);
     }
+    allEvents.sort((a, b) => a.start.utc - b.start.utc);
+    return allEvents;
   }
 
 
@@ -93,7 +86,7 @@ export class EventsService {
           address_1: eventData.venueAddress1,
           address_2: eventData.venueAddress2,
           city: eventData.venueCity,
-          // region: eventData.venueRegion, --DISABLED due to EventBrite API rejecting valid ISO 3166-2 region codes
+          // region: eventData.venueRegion, //--DISABLED due to EventBrite API rejecting valid ISO 3166-2 region codes with or without country code prepended
           postal_code: eventData.venuePostCode,
           country: eventData.venueCountry,
         }
@@ -134,22 +127,25 @@ export class EventsService {
     }
     await firstValueFrom(this.postTicketClassToEvent(eventId, ticketClass))
 
-    const description = {
-      data: {
-        body: {
-          alignment: "left",
-          text: eventData.description,
-        }
-      },
-      type: "text"
-    }
-    const structuredContent = {
-      access_type: "public",
-      modules: [description],
-      publish: true
+    if (eventData.description) {
+      const description = {
+        data: {
+          body: {
+            alignment: "left",
+            text: eventData.description,
+          }
+        },
+        type: "text"
+      }
+      const structuredContent = {
+        access_type: "public",
+        modules: [description],
+        publish: true
+      }
+  
+      await firstValueFrom(this.postContentToEvent(eventId, structuredContent))
     }
 
-    await firstValueFrom(this.postContentToEvent(eventId, structuredContent))
 
     const publishEventResponse: any = await firstValueFrom(this.postPublishEvent(eventId))
 
