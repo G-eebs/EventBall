@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom, map, combineLatest} from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class EventsService {
@@ -16,25 +16,22 @@ export class EventsService {
   getEventsByOrganizer(
     id: string,
     params: any = this.defaultGetOrganizerEventsParams
-  ): Observable<any> {
-    return this.http.get(`/eb-get-events-by-organizer/${id}`, {
+  ): Observable<[]> {
+    return this.http.get<any>(`/eb-get-events-by-organizer/${id}`, {
       params,
-    });
+    }).pipe(map(res => res["events"]));
   }
 
-  async getEventsByOrganizerList(
+  getEventsByOrganizerList(
     ids: Array<string>,
     params: any = this.defaultGetOrganizerEventsParams
-  ) {
-    const allEvents = [];
+  ): Observable<any[]> {
+    const allEvents: Observable<[]>[] = [];
     for (let id of ids) {
-      const res = await firstValueFrom(this.getEventsByOrganizer(id, params));
-      allEvents.push(...res.events);
+      allEvents.push(this.getEventsByOrganizer(id, params))
     }
-    allEvents.sort((a, b) => a.start.utc - b.start.utc);
-    return allEvents;
+    return combineLatest(allEvents).pipe(map(events => events.flat()))
   }
-
 
   defaultGetEventParams = {
     expand: 'venue,organizer,ticket_classes',
