@@ -1,5 +1,5 @@
 .event-card {
-    height: 10rem;
+    height: 11rem;
     padding: .5rem;
     background-color: white;
     display: grid;
@@ -10,7 +10,6 @@
     column-gap: .5rem;
     border-radius: 1.5rem;
     box-shadow: .25rem .25rem .5rem rgba(0, 0, 0, 0.5);
-    line-height: 1.25rem;
 }
 
 .event-card:hover {
@@ -33,12 +32,12 @@
     padding: .5rem;
     border-radius: 1rem;
     display: grid;
-    grid-template-columns: 2fr 3fr;
-    grid-template-rows: min-content 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content 1fr;
     grid-template-areas:
     "title title"
-    "date location"
-    "organizer location";
+    "date-organizer location";
+    line-height: 1.25rem;
     overflow: hidden;
     background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgb(255, 255, 255));
 }
@@ -46,47 +45,55 @@
 .event-card-info-title {
     grid-area: title;
     margin: 0 auto;
-    max-height: 3.2em;
+    max-height: 4.5rem;
     padding: .25rem .5rem;
-    border-radius: .5rem;
-    height: fit-content;
-    width: fit-content;
-    text-wrap: wrap;
-    overflow: hidden;
-    text-align: center;
-    font-weight: 600;
     background-color: white;
+    border-radius: .5rem;
     box-shadow: .2rem .2rem .25rem rgba(0, 0, 0, 0.25) inset;
 }
 
-.event-card-info-date {
-    grid-area: date;
-    margin: auto auto 0;
-    height: fit-content;
-    width: fit-content;
-    max-height: 2.5em;
+.event-card-info-title-text {
+    margin: 0;
+    max-height: 100%;
+    line-height: 1.5rem;
+    overflow: hidden;
+    text-align: center;
+    font-weight: 600;
+}
+
+.event-card-info-left {
+    grid-area: date-organizer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.event-card-info-left-date {
+    max-height: 1.25rem;
+    margin: 0;
+    overflow: hidden;
     text-align: center;
     font-weight: 600;
     text-shadow: 0 0 1em white;
 }
 
-.event-card-info-organizer {
-    grid-area: organizer;
-    margin: 0 auto auto;
-    height: fit-content;
-    width: fit-content;
-    max-height: 2.5em;
+.event-card-info-left-organizer {
+    margin: 0;
+    max-height: 3.75rem;
     text-align: center;
     font-weight: bold;
     text-shadow: 0 0 1em white;
+    overflow: hidden;
 }
 
 .event-card-info-location {
     grid-area: location;
     margin: auto;
     height: fit-content;
+    max-height: 5rem;
     width: fit-content;
-    max-height: 5em;
     overflow: hidden;
     padding-left: 0.25rem;
 }
