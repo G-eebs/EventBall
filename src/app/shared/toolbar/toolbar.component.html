@@ -1,10 +1,20 @@
 <header class="toolbar">
     <a routerLink="" class="title">EventBall</a>
-    <span class="spacer"></span>
-    <button mat-button [matMenuTriggerFor]="userMenu" class="user" >User</button>
+    <button [matMenuTriggerFor]="userMenu" class="user-button" >
+        @if (!currentUser()) {
+            <p class="user-button-login">Sign In</p>
+        }
+        @else {
+            <p class="user-button-letter">{{ currentUser()?.email?.at(0)?.toUpperCase() }}</p>
+        }
+    </button>
     <mat-menu #userMenu="matMenu" class="user-menu">
-        <a mat-menu-item routerLink="create-event">Create Event</a>
-        <button mat-menu-item>Log Out</button>
+        @if(!currentUser()) {
+            <button mat-menu-item (click)="openLoginDialog()">Sign In</button>
+        }
+        @else {
+            <a mat-menu-item routerLink="create-event">Create Event</a>
+            <button mat-menu-item (click)="signOut()" class="user-menu-logout">Sign Out</button>
+        }
     </mat-menu>
 </header>
-

@@ -1,0 +1,19 @@
+<div class="login">
+  <h3 mat-dialog-title>Sign in</h3>
+  <div mat-dialog-content>
+    @if(isSignInSuccessful()) {
+      @if (isUserCreated()) {
+        <p class="login-success">Account created</p>
+      }
+      <p class="login-success">You're signed in!</p>
+    } @else {
+      @if(!isEmailSignIn()){
+        <button mat-raised-button (click)="isEmailSignIn.set(true)" class="login-option">Sign in with email</button>
+      } @else {
+          <app-email-form (emailAccountSubmitted)="emailAccountSubmitted($event)" [signInError]="signInError()"></app-email-form>
+          <button mat-raised-button (click)="onBack()" class="login-back">Back</button><br>
+        }
+    }
+    <button mat-raised-button mat-dialog-close class="login-close">Close</button>
+  </div>
+</div>

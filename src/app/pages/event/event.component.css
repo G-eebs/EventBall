@@ -97,11 +97,11 @@
 }
 
 .event-description-summary {
-  margin: 0;
+  margin: 0 0 .5rem;
 }
 
 .event-description-text {
-  margin: 0;
+  margin: 0 0 .5rem;
 }
 
 .progress-spinner {

@@ -1,4 +1,4 @@
-import { Component, Output, signal, EventEmitter } from '@angular/core';
+import { Component, signal, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatHint, MatInputModule } from '@angular/material/input'; 
 import { MatSelectModule } from '@angular/material/select'; 
@@ -62,12 +62,12 @@ export class CreateEventFormComponent {
     })
   }
 
-  submitted = false;
-  @Output() eventPublished = new EventEmitter<boolean>();
+  submitted = signal(false);
+  eventPublished = output<Object>();
 
   async onSubmit() {
     if (this.eventForm.valid) {
-      this.submitted = true;
+      this.submitted.set(true);
       const eventBallOrganizationId = "2517053640201"
       const eventBallOrganizerId = "104041490841"
       const res = await this.eventsService.postEntireEvent(this.eventForm.value, eventBallOrganizationId, eventBallOrganizerId)

@@ -1,0 +1,14 @@
+.email-form-field {
+  width: 100%;
+}
+
+.event-form-submit {
+  width: 100%;
+  margin-bottom: .5rem;
+}
+
+.email-login-error {
+  width: fit-content;
+  margin: 0 0 .5rem;
+  color: red;
+}

@@ -5,9 +5,9 @@ import { CreateEventComponent } from './pages/create-event/create-event.componen
 import { ErrorComponent } from './errors/error/error.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'events/:event_id', component: EventComponent },
-  { path: 'create-event', component: CreateEventComponent },
-  { path: 'error', component: ErrorComponent },
-  { path: '**', component: ErrorComponent, data: {error: {status: 404, statusText: "Not Found"}} }
+  { path: '', component: HomeComponent},
+  { path: 'events/:event_id', component: EventComponent, title: "Event" },
+  { path: 'create-event', component: CreateEventComponent, title: "Create Event" },
+  { path: 'error', component: ErrorComponent, title: "Error" },
+  { path: '**', component: ErrorComponent, title: "Not Found", data: {error: {status: 404, statusText: "Not Found"}} }
 ];
