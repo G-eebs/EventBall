@@ -6,7 +6,7 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
   selector: 'app-root',
   imports: [RouterOutlet, ToolbarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'EventBall';

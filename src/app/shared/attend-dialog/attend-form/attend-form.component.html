@@ -1,0 +1,13 @@
+<form [formGroup]="attendForm" ngNativeValidate (ngSubmit)="onSubmit()" class="attend-form">
+  <mat-form-field class="attend-form-field">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" formControlName="name" />
+    <mat-error>Please enter your name</mat-error>
+  </mat-form-field>
+  <mat-form-field class="attend-form-field">
+    <mat-label>Email</mat-label>
+    <input matInput type="text" formControlName="email" />
+    <mat-error>Please enter a valid email</mat-error>
+  </mat-form-field>
+  <button mat-raised-button [disabled]="!attendForm.valid" class="attend-form-submit" >Sign Up</button>
+</form>

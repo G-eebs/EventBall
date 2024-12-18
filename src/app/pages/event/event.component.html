@@ -1,41 +1,50 @@
-<section class="event">
-  @if(event) {
-  <div
-    [ngStyle]="{ 'background-image': 'url(' + bannerSrc + ')' }"
-    alt="Event banner image"
-    class="event-banner"
-  ></div>
-  <h2 class="event-title">{{ event.name.text }}</h2>
-  <section class="event-info">
-    <div class="event-info-date">
-      <p class="event-info-date-start">
-        <b class="event-info-date-start-from">From</b>
-        {{ event.start.local | date : "MMM dd, yyyy '|' hh:mm a" }}
-      </p>
-      <p class="event-info-date-end">
-        <b class="event-info-date-end-until">Until</b>
-        {{ event.end.local | date : "MMM dd, yyyy '|' hh:mm a" }}
-      </p>
-    </div>
-    <div class="event-info-location">
-      @if (event.venue; as venue) { @for (addressLine of
-      venue.address.localized_multi_line_address_display; track $index) {
-      <p class="event-info-location-line">{{ addressLine }}</p>
-      } } @else {
-      <p class="event-info-location-line">Online</p>
+<span class="event-wrapper">
+  <section class="event">
+    @if(event) {
+    <div
+      [ngStyle]="{ 'background-image': 'url(' + bannerSrc + ')' }"
+      alt="Event banner image"
+      class="event-banner"
+    ></div>
+    <h2 class="event-title">{{ event.name.text }}</h2>
+    <section class="event-info">
+      <div class="event-info-date">
+        <p class="event-info-date-start">
+          <b class="event-info-date-start-from">From</b>
+          {{ event.start.local | date : "MMM dd, yyyy '|' h:mm a" }}
+        </p>
+        <p class="event-info-date-end">
+          <b class="event-info-date-end-until">Until</b>
+          {{ event.end.local | date : "MMM dd, yyyy '|' h:mm a" }}
+        </p>
+      </div>
+      <div class="event-info-location">
+        @if (event.venue; as venue) {
+          <p class="event-info-location-line">{{ venue.name }}</p>
+          @for (addressLine of venue.address.localized_multi_line_address_display; track $index) {
+            <p class="event-info-location-line">{{ addressLine }}</p>
+          } 
+        } @else {
+        <p class="event-info-location-line">Online</p>
+        }
+      </div>
+    </section>
+    <h4 class="event-organizer">{{ event.organizer.name }}</h4>
+    <article class="event-description">
+      <h3 class="event-description-heading">About</h3>
+      @if ((eventDescription$ | async); as eventDescription) {
+        <p class="event-description-text" [innerHTML]="eventDescription.description"></p>
+      } @else {
+        <p class="event-description-summary"> {{ event.description.text }}</p>
       }
-    </div>
-  </section>
-  <h4 class="event-organizer">{{ event.organizer.name }}</h4>
-  <article class="event-description">
-    <h3 class="event-description-heading">About</h3>
-    @if ((eventDescription$ | async); as eventDescription) {
-      <p class="event-description-text" [innerHTML]="eventDescription.description"></p>
+    </article>
     } @else {
-      <p class="event-description-summary"> {{ event.description.text }}</p>
+      <mat-spinner class="progress-spinner" aria-label="Event loading indicator"></mat-spinner>
     }
-  </article>
-  } @else {
-    <mat-spinner class="progress-spinner" aria-label="Event loading indicator"></mat-spinner>
+  </section>
+  @if(event) {
+    <section class="event-buttons">
+      <button mat-raised-button (click)="openLoginDialog()" class="event-attend-button">Attend</button>
+    </section>
   }
-</section>
+</span>

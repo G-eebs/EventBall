@@ -1,3 +1,11 @@
+.event-wrapper {
+  height: calc(100vh - 5rem - 2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .event {
   width: 95%;
   max-width: 800px;
@@ -13,7 +21,7 @@
 .event-banner {
   height: 40vh;
   width: 100%;
-  margin: 0.5rem 0 0;
+  margin: 0;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,8 +29,7 @@
 }
 
 .event-title {
-  margin: 0.25rem 0 0;
-  max-width: calc(100% - 1.5rem);
+  margin: .25rem .25rem 0;
   width: fit-content;
   text-align: center;
   padding: .1rem .5rem .25rem;
@@ -75,7 +82,7 @@
 }
 
 .event-organizer {
-  margin: 0.25rem 0 0;
+  margin: 0.5rem 0 0;
   padding: .1rem .25rem .25rem;
   border-radius: .5rem;
   color: white;
@@ -110,4 +117,23 @@
 
 .mat-mdc-progress-spinner {
   --mdc-circular-progress-active-indicator-color: #FFB200;
+}
+
+.event-buttons {
+  position: sticky;
+  bottom: 0px;
+  width: calc(100% - 1rem);
+  margin: 0;
+  padding: .5rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  box-shadow: -.25rem 0 1rem rgba(0, 0, 0, 0.25);
+}
+
+.event-attend-button {
+  width: 95%;
+  max-width: 800px;
 }
