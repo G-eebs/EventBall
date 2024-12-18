@@ -1,10 +1,10 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog'; 
 import { MatSnackBar } from '@angular/material/snack-bar'; 
-import { LoginComponent } from '../login/login.component';
-import { Auth, User, user, getRedirectResult, GoogleAuthProvider } from '@angular/fire/auth';
+import { LoginComponent } from '../login-dialog/login-dialog.component';
+import { Auth, User, user } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -19,7 +19,7 @@ export class ToolbarComponent {
   userSubscription: Subscription;
   currentUser: WritableSignal<User | null> = signal(null)
 
-  constructor(private loginDialog: MatDialog, private logoutSnackBar: MatSnackBar) {
+  constructor(private loginDialog: MatDialog, private logoutSnackBar: MatSnackBar, private router: Router) {
     this.userSubscription = this.user$.subscribe((user: User | null) => {
       this.currentUser.set(user)
     })
@@ -39,20 +39,12 @@ export class ToolbarComponent {
     try {
       await this.auth.signOut()
       this.openlogoutSnackBar("Signed out")
+      if(this.router.url === "/create-event") {
+        this.router.navigate([""])
+      }
     } catch (error: any) {
       console.error('Error signing out: ', error)
       this.openlogoutSnackBar(`Error signing out: ${error.message}`)
-    }
-  }
-
-  async ngOnInit() {
-    const result = await getRedirectResult(this.auth);
-    console.log(result);
-    if (result) {
-      const user = result.user;
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
-      console.log(result, user, credential, token);
     }
   }
 

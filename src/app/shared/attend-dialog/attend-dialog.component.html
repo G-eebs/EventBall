@@ -1,0 +1,35 @@
+<div class="attend">
+  <h3 mat-dialog-title>Attend</h3>
+    <div mat-dialog-content>
+      @if(!attendeeSubmitted()){
+        <app-attend-form (attendeeSubmitted)="onAttendeeSubmitted($event)"></app-attend-form>
+      } @else {
+        <p class="attend-signed-up">You're signed up!</p>
+        <p class="attend-event-name">{{ event.name.text }}</p>
+        <p class="attend-event-start">{{ event.start.local | date : "dd MMMM yyyy, h:mm a" }}</p>
+        @if (event.venue; as venue) {
+          <p class="attend-event-venue">{{ venue.name }}</p>
+          @for (addressLine of venue.address.localized_multi_line_address_display; track $index) {
+            <p class="attend-event-venue">{{ addressLine }}</p>
+          } 
+        } @else {
+          <p class="attend-event-online">Online</p>
+        }
+        <add-to-calendar-button
+        [attr.name]="event.name.text"
+        options="'Outlook.com', 'Yahoo', 'Apple', 'Google'"
+        [attr.startDate]="event.start.utc"
+        [attr.endDate]="event.end.utc"
+        timeZone="UTC"
+        [attr.location]="eventLocationString"
+        [attr.description]="eventDescriptionString"
+        listStyle="dropup-static"
+        trigger="click"
+        forceOverlay
+        hideBranding
+        hideCheckmark
+        ></add-to-calendar-button>
+      }
+      <button mat-raised-button mat-dialog-close class="attend-close">Close</button>
+    </div>
+</div>

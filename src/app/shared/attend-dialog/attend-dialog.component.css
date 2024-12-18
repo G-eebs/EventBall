@@ -1,0 +1,31 @@
+.attend {
+  padding: 0;
+}
+
+.attend-signed-up {
+  margin: 0 0 .5rem;
+  color: black;
+}
+
+.attend-event-name {
+  margin: 0 0 .25rem;
+  font-weight: 600;
+}
+
+.attend-event-start {
+  margin: 0 0 .25rem;
+}
+
+.attend-event-venue {
+  margin: 0;
+  font-style: italic;
+}
+
+.attend-event-online {
+  margin: 0 0 .25rem;
+  font-style: italic;
+}
+
+.attend-close {
+  margin: .5rem 0 0;
+}
