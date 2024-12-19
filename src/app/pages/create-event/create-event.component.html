@@ -1,6 +1,8 @@
 <section class="create-event">
-  <h2 class="create-event-heading">Create an event</h2>
-  @if(!eventPublishSuccessful) {<app-create-event-form (eventPublished)="eventPublished($event)"></app-create-event-form>}
-  @if(eventPublishSuccessful) {<h3>Event Created!</h3>}
-  @if(eventPublishSuccessful) {<a mat-raised-button [routerLink]="['/events', publishedEventId]">View Event</a>}
+  <h2 class="create-event-heading">{{ eventPublishSuccessful() ? "Event Created!" : "Create an event" }}</h2>
+  @if(!eventPublishSuccessful()) {
+    <app-create-event-form (eventPublished)="eventPublished($event)"></app-create-event-form>
+  } @else {
+    <a mat-raised-button [routerLink]="['/events', publishedEventId()]">View Event</a>
+  }
 </section>

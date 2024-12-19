@@ -37,6 +37,10 @@
   to = "/eb-post-publish-event/:splat"
   status = 200
 [[redirects]]
+  from = "/eb-delete-event-by-id/*"
+  to = "/eb-delete-event-by-id/:splat"
+  status = 200
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
