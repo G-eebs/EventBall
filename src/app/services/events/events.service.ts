@@ -13,6 +13,10 @@ export class EventsService {
     expand: 'venue,organizer',
   };
 
+  defaultGetEventParams = {
+    expand: 'venue,organizer,ticket_classes',
+  };
+
   getEventsByOrganizer(
     id: string,
     params: any = this.defaultGetOrganizerEventsParams
@@ -32,10 +36,6 @@ export class EventsService {
     }
     return combineLatest(allEvents).pipe(map(events => events.flat()))
   }
-
-  defaultGetEventParams = {
-    expand: 'venue,organizer,ticket_classes',
-  };
 
   getEventById(
     id: string,
@@ -92,8 +92,10 @@ export class EventsService {
       venueId = venueResponse.id
     }
 
-    const startUTC = DateTime.fromISO(eventData.start, { zone: eventData.timeZone }).toUTC().startOf("second").toISO({ suppressMilliseconds: true })
-    const endUTC = DateTime.fromISO(eventData.end, { zone: eventData.timeZone }).toUTC().startOf("second").toISO({ suppressMilliseconds: true })
+    const startUTC = DateTime.fromISO(eventData.start, { zone: eventData.timeZone })
+      .toUTC().startOf("second").toISO({ suppressMilliseconds: true })
+    const endUTC = DateTime.fromISO(eventData.end, { zone: eventData.timeZone })
+      .toUTC().startOf("second").toISO({ suppressMilliseconds: true })
     
     const event = {
       name: {html: eventData.name},
@@ -143,7 +145,6 @@ export class EventsService {
       await firstValueFrom(this.postContentToEvent(eventId, structuredContent))
     }
 
-
     const publishEventResponse: any = await firstValueFrom(this.postPublishEvent(eventId))
 
     const response = {
@@ -153,4 +154,9 @@ export class EventsService {
 
     return response;
   }
+
+  deleteEvent(id: string) {
+    return this.http.delete(`/eb-delete-event-by-id/${id}`)
+  }
+
 }

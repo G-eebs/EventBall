@@ -17,7 +17,7 @@ export class EventCardComponent {
 
   constructor(private attendDialog: MatDialog) {}
   
-  openLoginDialog() {
+  openAttendDialog() {
     this.attendDialog.open(AttendDialogComponent, {
       data: this.event(),
     })

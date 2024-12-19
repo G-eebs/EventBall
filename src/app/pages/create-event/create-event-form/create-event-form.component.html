@@ -1,141 +1,145 @@
 <form [formGroup]="eventForm" ngNativeValidate (ngSubmit)="onSubmit()" class="event-form">
-  <mat-form-field class="event-form-field-long">
-    <mat-label>Event name</mat-label>
-    <input matInput type="text" formControlName="name" />
-    <mat-error>Event name is required</mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="event-form-field-short">
-    <mat-label>Time zone</mat-label>
-    <mat-select formControlName="timeZone">
-      @for(timeZone of timeZones; track timeZone) {<mat-option [value]="timeZone">{{ timeZone.replace("_", " ") }}</mat-option>}
-    </mat-select>
-    <mat-error>Time zone is required</mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="event-form-field-short">
-    <mat-label>Start date</mat-label>
-    <input
-      matInput
-      type="datetime-local"
-      formControlName="start"
-      class="event-form-date-input"
-    />
-    @if(eventForm.get("start")?.hasError("required")){<mat-error>Start date is required</mat-error>}
-    @if(eventForm.hasError("futureStart") && eventForm.get("start")?.dirty){
-      <mat-hint class="event-form-custom-error">Date must be in the future</mat-hint>
-    }  
-  </mat-form-field>
-
-  <mat-form-field class="event-form-field-short">
-    <mat-label>End date</mat-label>
-    <input
-      matInput
-      type="datetime-local"
-      formControlName="end"
-      class="event-form-date-input"
-    />
-    @if(eventForm.get("end")?.hasError("required")){<mat-error>End date is required</mat-error>}
-    @if(eventForm.hasError("endAfterStart") && eventForm.get("end")?.dirty){
-      <mat-hint class="event-form-custom-error">End date must be after start date</mat-hint>
-    }
-  </mat-form-field>
-
-  <mat-form-field class="event-form-field-long">
-    <mat-label>Summary</mat-label>
-    <textarea matInput maxlength="1400" cdkTextareaAutosize formControlName="summary"></textarea>
-    <mat-hint align="end">{{eventForm.get("summary")?.value?.length || 0}}/140</mat-hint>
-    @if(eventForm.get("summary")?.hasError("required") || eventForm.get("summary")?.hasError("pattern")) {
-      <mat-error >Summary is required</mat-error>
-    }
-    @if(eventForm.get("summary")?.hasError("maxlength")) {
-      <mat-error>Max 140 characters
-        <span class="event-form-summary-length-error">{{eventForm.get("summary")?.value?.length || 0}}/140</span>
-      </mat-error>
-    }
-  </mat-form-field>
-
-  <mat-form-field class="event-form-field-long">
-    <mat-label>Description</mat-label>
-    <textarea matInput cdkTextareaAutosize rows="2" formControlName="description"></textarea>
-  </mat-form-field>
-
-  <h2 class="event-form-subheading">Location</h2>
-
-  <mat-checkbox formControlName="online" class="event-form-checkbox">Online</mat-checkbox>
-
-  @if (!eventForm.get("online")?.value) {
-  <mat-form-field class="event-form-field-long">
-    <mat-label>Venue name</mat-label>
-    <input matInput type="text" formControlName="venueName" />
-  </mat-form-field>
-  <mat-form-field class="event-form-field-long">
-    <mat-label>Address</mat-label>
-    <input matInput type="text" formControlName="venueAddress1" />
-  </mat-form-field>
-  <mat-form-field class="event-form-field-long">
-    <mat-label>Address 2</mat-label>
-    <input matInput type="text" formControlName="venueAddress2" />
-  </mat-form-field>
-  <mat-form-field class="event-form-field-short">
-    <mat-label>City</mat-label>
-    <input matInput formControlName="venueCity" />
-  </mat-form-field>
-  <mat-form-field class="event-form-field-short">
-    <mat-label>County / Region</mat-label>
-    <mat-select formControlName="venueRegion">
-      @for(region of regions()|keyvalue; track region.key) {<mat-option [value]="region.key">{{ region.value.name }}</mat-option>}
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field class="event-form-field-short">
-    <mat-label>Postal Code</mat-label>
-    <input matInput formControlName="venuePostCode" />
-  </mat-form-field>
-  <mat-form-field class="event-form-field-short">
-    <mat-label>Country</mat-label>
-    <mat-select formControlName="venueCountry">
-      @for(country of countries; track country.alpha2) {<mat-option [value]="country.alpha2">{{ country.country }}</mat-option>}
-    </mat-select>
-  </mat-form-field>
-  }
-
-  <hr class="event-form-break" />
-
-  <h2 class="event-form-subheading">Tickets</h2>
-
-  <mat-form-field class="event-form-field-short">
-    <mat-label>Currency</mat-label>
-    <mat-select formControlName="currency">
-      @for(currency of currencies; track currency) {<mat-option [value]="currency">{{ currency }}</mat-option>}
-    </mat-select>
-    <mat-error>Currency is required</mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="event-form-field-short">
-    <mat-label>Ticket quantity</mat-label>
-    <input matInput type="number" step="1" formControlName="ticketQuantity"/>
-    <mat-error>Ticket quantity is required</mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="event-form-field-long">
-    <mat-label>Ticket name</mat-label>
-    <input matInput type="text" formControlName="ticketName" />
-    <mat-error>Ticket name is required</mat-error>
-  </mat-form-field>
-
-  <mat-checkbox formControlName="ticketFree" class="event-form-checkbox" >Free</mat-checkbox>
-
-  <hr class="event-form-break" />
-  
-  @if (!eventForm.get("ticketFree")?.value) {
-    <mat-form-field class="event-form-field-short">
-      <mat-label>Ticket cost {{ eventForm.get("currency")?.value }}</mat-label>
-      <input matInput type="number" step="0.01" formControlName="ticketCost"/>
+  @if (!isEventSubmitted()) {
+    <mat-form-field class="event-form-field-long">
+      <mat-label>Event name</mat-label>
+      <input matInput type="text" formControlName="name" />
+      <mat-error>Event name is required</mat-error>
     </mat-form-field>
+
+    <mat-form-field class="event-form-field-short">
+      <mat-label>Time zone</mat-label>
+      <mat-select formControlName="timeZone">
+        @for(timeZone of timeZones; track timeZone) {<mat-option [value]="timeZone">{{ timeZone.replace("_", " ") }}</mat-option>}
+      </mat-select>
+      <mat-error>Time zone is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="event-form-field-short">
+      <mat-label>Start date</mat-label>
+      <input
+        matInput
+        type="datetime-local"
+        formControlName="start"
+        class="event-form-date-input"
+      />
+      @if(eventForm.get("start")?.hasError("required")){<mat-error>Start date is required</mat-error>}
+      @if(eventForm.hasError("futureStart") && eventForm.get("start")?.dirty){
+        <mat-hint class="event-form-custom-error">Date must be in the future</mat-hint>
+      }  
+    </mat-form-field>
+
+    <mat-form-field class="event-form-field-short">
+      <mat-label>End date</mat-label>
+      <input
+        matInput
+        type="datetime-local"
+        formControlName="end"
+        class="event-form-date-input"
+      />
+      @if(eventForm.get("end")?.hasError("required")){<mat-error>End date is required</mat-error>}
+      @if(eventForm.hasError("endAfterStart") && eventForm.get("end")?.dirty){
+        <mat-hint class="event-form-custom-error">End date must be after start date</mat-hint>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="event-form-field-long">
+      <mat-label>Summary</mat-label>
+      <textarea matInput maxlength="1400" cdkTextareaAutosize formControlName="summary"></textarea>
+      <mat-hint align="end">{{eventForm.get("summary")?.value?.length || 0}}/140</mat-hint>
+      @if(eventForm.get("summary")?.hasError("required") || eventForm.get("summary")?.hasError("pattern")) {
+        <mat-error >Summary is required</mat-error>
+      }
+      @if(eventForm.get("summary")?.hasError("maxlength")) {
+        <mat-error>Max 140 characters
+          <span class="event-form-summary-length-error">{{eventForm.get("summary")?.value?.length || 0}}/140</span>
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="event-form-field-long">
+      <mat-label>Description</mat-label>
+      <textarea matInput cdkTextareaAutosize rows="2" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <h2 class="event-form-subheading">Location</h2>
+
+    <mat-checkbox formControlName="online" class="event-form-checkbox">Online</mat-checkbox>
+
+    @if (!eventForm.get("online")?.value) {
+    <mat-form-field class="event-form-field-long">
+      <mat-label>Venue name</mat-label>
+      <input matInput type="text" formControlName="venueName" />
+    </mat-form-field>
+    <mat-form-field class="event-form-field-long">
+      <mat-label>Address</mat-label>
+      <input matInput type="text" formControlName="venueAddress1" />
+    </mat-form-field>
+    <mat-form-field class="event-form-field-long">
+      <mat-label>Address 2</mat-label>
+      <input matInput type="text" formControlName="venueAddress2" />
+    </mat-form-field>
+    <mat-form-field class="event-form-field-short">
+      <mat-label>City</mat-label>
+      <input matInput formControlName="venueCity" />
+    </mat-form-field>
+    <mat-form-field class="event-form-field-short">
+      <mat-label>County / Region</mat-label>
+      <mat-select formControlName="venueRegion">
+        @for(region of regions()|keyvalue; track region.key) {<mat-option [value]="region.key">{{ region.value.name }}</mat-option>}
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="event-form-field-short">
+      <mat-label>Postal Code</mat-label>
+      <input matInput formControlName="venuePostCode" />
+    </mat-form-field>
+    <mat-form-field class="event-form-field-short">
+      <mat-label>Country</mat-label>
+      <mat-select formControlName="venueCountry">
+        @for(country of countries; track country.alpha2) {<mat-option [value]="country.alpha2">{{ country.country }}</mat-option>}
+      </mat-select>
+    </mat-form-field>
+    }
+
+    <hr class="event-form-break" />
+
+    <h2 class="event-form-subheading">Tickets</h2>
+
+    <mat-form-field class="event-form-field-short">
+      <mat-label>Currency</mat-label>
+      <mat-select formControlName="currency">
+        @for(currency of currencies; track currency) {<mat-option [value]="currency">{{ currency }}</mat-option>}
+      </mat-select>
+      <mat-error>Currency is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="event-form-field-short">
+      <mat-label>Ticket quantity</mat-label>
+      <input matInput type="number" step="1" formControlName="ticketQuantity"/>
+      <mat-error>Ticket quantity is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="event-form-field-long">
+      <mat-label>Ticket name</mat-label>
+      <input matInput type="text" formControlName="ticketName" />
+      <mat-error>Ticket name is required</mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="ticketFree" class="event-form-checkbox" >Free</mat-checkbox>
+
+    <hr class="event-form-break" />
+    
+    @if (!eventForm.get("ticketFree")?.value) {
+      <mat-form-field class="event-form-field-short">
+        <mat-label>Ticket cost {{ eventForm.get("currency")?.value }}</mat-label>
+        <input matInput type="number" step="0.01" formControlName="ticketCost"/>
+      </mat-form-field>
+    }
+
+    <hr class="event-form-break" />
+
+    <button mat-raised-button [disabled]="!eventForm.valid || isEventSubmitted()" class="event-form-submit" >Create Event</button>
   }
-
-  <hr class="event-form-break" />
-
-  <button mat-raised-button [disabled]="!eventForm.valid || submitted()" class="event-form-submit" >Create Event</button>
-
+  @else {
+    <mat-spinner class="progress-spinner" aria-label="Event posting indicator"></mat-spinner>
+  }
 </form>

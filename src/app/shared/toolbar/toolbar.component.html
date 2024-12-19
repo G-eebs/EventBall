@@ -1,8 +1,8 @@
 <header class="toolbar">
   <a routerLink="" class="title">EventBall</a>
-  <button [matMenuTriggerFor]="userMenu" class="user-button" >
+  <button [matMenuTriggerFor]="userMenu" class="user-button" [class.user-button-signed-in]="currentUser()" >
     @if (!currentUser()) {
-    <p class="user-button-login">Sign In</p>
+      <p class="user-button-login">Sign In</p>
     }
     @else {
       <p class="user-button-letter">{{ currentUser()?.email?.at(0)?.toUpperCase() }}</p>

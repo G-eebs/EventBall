@@ -49,3 +49,11 @@ mat-hint {
 .event-form-custom-error {
   color: rgb(244, 67, 54);
 }
+
+.progress-spinner {
+  margin: 1rem;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #FFB200;
+}

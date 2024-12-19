@@ -12,11 +12,22 @@ import { Observable } from 'rxjs';
 import iso3166_1 from "iso-3166-1"
 import iso3166_2 from "iso-3166-2"
 import { KeyValuePipe } from '@angular/common';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 
 @Component({
   selector: 'app-create-event-form',
-  imports: [ReactiveFormsModule, MatInputModule, TextFieldModule, MatSelectModule, MatCheckboxModule, MatButtonModule, MatHint, KeyValuePipe],
+  imports: [
+    ReactiveFormsModule, 
+    MatInputModule, 
+    TextFieldModule, 
+    MatSelectModule, 
+    MatCheckboxModule, 
+    MatButtonModule, 
+    MatHint, 
+    KeyValuePipe,
+    MatProgressSpinner
+  ],
   templateUrl: './create-event-form.component.html',
   styleUrl: './create-event-form.component.css'
 })
@@ -27,6 +38,10 @@ export class CreateEventFormComponent {
   countries = iso3166_1.all()
   defaultCountryCode = "GB"
   defaultCurrencyCode = "GBP"
+  venueCountry$!: Observable<any>
+  regions = signal(iso3166_2.country(this.defaultCountryCode)?.sub)
+  isEventSubmitted = signal(false);
+  eventPublished = output<Object>();
 
   eventForm = new FormGroup({
       name: new FormControl("", [Validators.required, Validators.pattern(/^\S.*/)]),
@@ -51,10 +66,6 @@ export class CreateEventFormComponent {
     }, {validators: [futureStartValidator, endAfterStartValidator]}
   )
 
-  venueCountry$!: Observable<any>
- 
-  regions = signal(iso3166_2.country(this.defaultCountryCode)?.sub)
-
   ngOnInit() {
     this.venueCountry$ = this.eventForm.get("venueCountry")!.valueChanges
     this.venueCountry$.subscribe(country => {
@@ -62,12 +73,9 @@ export class CreateEventFormComponent {
     })
   }
 
-  submitted = signal(false);
-  eventPublished = output<Object>();
-
   async onSubmit() {
     if (this.eventForm.valid) {
-      this.submitted.set(true);
+      this.isEventSubmitted.set(true);
       const eventBallOrganizationId = "2517053640201"
       const eventBallOrganizerId = "104041490841"
       const res = await this.eventsService.postEntireEvent(this.eventForm.value, eventBallOrganizationId, eventBallOrganizerId)
