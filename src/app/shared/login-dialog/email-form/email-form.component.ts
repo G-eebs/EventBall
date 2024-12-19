@@ -15,14 +15,14 @@ export class EmailFormComponent {
     password: new FormControl("", [Validators.required, Validators.minLength(6)]),
   })
 
-  submitted = signal(false)
+  isSubmitted = signal(false)
   signInClicked = signal(false)
   emailAccountSubmitted = output<Object>()
   signInError = input<any>()
   signInErrorMessage = signal<String | null>(null)
 
   onSubmit() {
-    this.submitted.set(true)
+    this.isSubmitted.set(true)
     this.signInErrorMessage.set(null)
     const userDetails = {
       signIn: true,
@@ -48,10 +48,10 @@ export class EmailFormComponent {
   ngOnChanges(changes: SimpleChanges) {
     const formSignInError = changes['signInError']
     if (formSignInError.currentValue) {
-      this.submitted.set(false)
       const errorCode: string = formSignInError.currentValue.errorCode
       const message = errorCode.split("/")[1].replaceAll("-", " ")
       this.signInErrorMessage.set(`Error: ${message}`)
+      this.isSubmitted.set(false)
     }
   }
 }

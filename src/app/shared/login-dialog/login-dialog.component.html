@@ -8,10 +8,14 @@
       <p class="login-success">You're signed in!</p>
     } @else {
       @if(!isEmailSignIn()){
-        <button mat-raised-button (click)="isEmailSignIn.set(true)" class="login-option">
+        <button mat-raised-button (click)="isEmailSignIn.set(true)" [disabled]="isSignInSubmitted()" class="login-option">
           <mat-icon>mail_outline</mat-icon>
           Sign in with email
         </button>
+        <button mat-raised-button (click)="onGoogleSignIn()" [disabled]="isSignInSubmitted()" class="login-option">
+          Sign in with Google
+        </button>
+        <p class="login-error">{{ signInError() }}</p>
       } @else {
           <app-email-form (emailAccountSubmitted)="emailAccountSubmitted($event)" [signInError]="signInError()"></app-email-form>
           <button mat-raised-button (click)="onBack()" class="login-back">Back</button><br>

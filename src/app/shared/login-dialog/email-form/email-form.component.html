@@ -9,7 +9,7 @@
     <input matInput type="password" formControlName="password" />
     <mat-error>Must be 6 or more characters</mat-error>
   </mat-form-field>
-  <p class="email-login-error">{{signInErrorMessage()}}</p>
-  <button mat-raised-button (click)="onSignIn()" [disabled]="!emailForm.valid || submitted()" class="event-form-submit" >Sign In</button>
-  <button mat-raised-button (click)="onSignUp()" [disabled]="!emailForm.valid || submitted()" class="event-form-submit" >Sign Up</button>
+  <p class="email-login-error">{{ signInErrorMessage() }}</p>
+  <button mat-raised-button (click)="onSignIn()" [disabled]="!emailForm.valid || isSubmitted()" class="event-form-submit" >Sign In</button>
+  <button mat-raised-button (click)="onSignUp()" [disabled]="!emailForm.valid || isSubmitted()" class="event-form-submit" >Sign Up</button>
 </form>

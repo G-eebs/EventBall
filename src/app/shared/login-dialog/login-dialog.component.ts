@@ -1,5 +1,5 @@
 import { Component, EnvironmentInjector, inject, runInInjectionContext, signal } from '@angular/core';
-import { Auth, user, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, user, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { MatButton } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon'
@@ -20,6 +20,8 @@ export class LoginComponent {
   isUserCreated = signal(false);
   signInError = signal<any>(null);
   environmentInjector = inject(EnvironmentInjector)
+  googleProvider = new GoogleAuthProvider();
+  isSignInSubmitted = signal(false)
 
   async emailAccountSubmitted(userDetails: any) {
     this.isSignInSuccessful.set(false)
@@ -57,4 +59,18 @@ export class LoginComponent {
     this.signInError.set(null)
   }
 
+  async onGoogleSignIn() {
+    this.isSignInSubmitted.set(true)
+    try {
+      await runInInjectionContext(this.environmentInjector, () => signInWithPopup(this.auth, this.googleProvider))
+      this.isSignInSuccessful.set(true)
+    } catch (error: any) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(errorCode, errorMessage);
+      const message = errorCode.split("/")[1].replaceAll("-", " ")
+      this.signInError.set(`Error: ${message}`)
+      this.isSignInSubmitted.set(false)
+    }
+  }
 }
