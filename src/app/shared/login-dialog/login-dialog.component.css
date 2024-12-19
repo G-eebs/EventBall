@@ -7,6 +7,12 @@
   margin-bottom: .5rem;
 }
 
+.login-error {
+  width: fit-content;
+  margin: 0 0 .5rem;
+  color: red;
+}
+
 .login-back {
   margin: 0 0 .5rem;
 }
