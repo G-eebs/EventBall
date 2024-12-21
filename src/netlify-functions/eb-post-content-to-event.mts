@@ -2,7 +2,7 @@ import type { Config, Context } from "@netlify/functions";
 import axios from "axios";
 
 export const config: Config = {
-  path: "/eb-post-content-to-event/:event_id/:version",
+  path: "/api/eb-post-content-to-event/:event_id/:version",
 };
 export default async (req: Request, context: Context) => {
   const accessToken = Netlify.env.get("EVENTBRITE_PRIVATE_TOKEN");

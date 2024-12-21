@@ -12,9 +12,11 @@
           <mat-icon>mail_outline</mat-icon>
           Sign in with email
         </button>
-        <button mat-raised-button (click)="onGoogleSignIn()" [disabled]="isSignInSubmitted()" class="login-option">
-          Sign in with Google
-        </button>
+        @if (!isNativePlatform) {
+          <button mat-raised-button (click)="onGoogleSignIn()" [disabled]="isSignInSubmitted()" class="login-option">
+            Sign in with Google
+          </button>
+        }
         <p class="login-error">{{ signInError() }}</p>
       } @else {
           <app-email-form (emailAccountSubmitted)="emailAccountSubmitted($event)" [signInError]="signInError()"></app-email-form>

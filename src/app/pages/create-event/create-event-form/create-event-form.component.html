@@ -19,6 +19,7 @@
       <input
         matInput
         type="datetime-local"
+        max="9999-12-31T23:59"
         formControlName="start"
         class="event-form-date-input"
       />
@@ -33,6 +34,7 @@
       <input
         matInput
         type="datetime-local"
+        max="9999-12-31T23:59"
         formControlName="end"
         class="event-form-date-input"
       />
@@ -90,7 +92,7 @@
     </mat-form-field>
     <mat-form-field class="event-form-field-short">
       <mat-label>Postal Code</mat-label>
-      <input matInput formControlName="venuePostCode" />
+      <input matInput autocapitalize="characters" formControlName="venuePostCode" />
     </mat-form-field>
     <mat-form-field class="event-form-field-short">
       <mat-label>Country</mat-label>

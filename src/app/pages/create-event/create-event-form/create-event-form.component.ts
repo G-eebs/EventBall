@@ -36,6 +36,7 @@ export class CreateEventFormComponent {
   timeZones = Intl.supportedValuesOf("timeZone");
   currencies = Intl.supportedValuesOf("currency");
   countries = iso3166_1.all()
+  defaultTimeZone = "Europe/London"
   defaultCountryCode = "GB"
   defaultCurrencyCode = "GBP"
   venueCountry$!: Observable<any>
@@ -45,7 +46,7 @@ export class CreateEventFormComponent {
 
   eventForm = new FormGroup({
       name: new FormControl("", [Validators.required, Validators.pattern(/^\S.*/)]),
-      timeZone: new FormControl("UTC", Validators.required),
+      timeZone: new FormControl(this.defaultTimeZone, Validators.required),
       start: new FormControl("", Validators.required),
       end: new FormControl("", Validators.required),
       summary: new FormControl("", [Validators.required, Validators.pattern(/^\S.*/), Validators.maxLength(140)]),

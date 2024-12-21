@@ -6,7 +6,7 @@
   </mat-form-field>
   <mat-form-field class="attend-form-field">
     <mat-label>Email</mat-label>
-    <input matInput type="text" formControlName="email" />
+    <input matInput type="email" formControlName="email" />
     <mat-error>Please enter a valid email</mat-error>
   </mat-form-field>
   <button mat-raised-button [disabled]="!attendForm.valid" class="attend-form-submit" >Sign Up</button>

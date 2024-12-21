@@ -2,7 +2,7 @@ import type { Config, Context } from "@netlify/functions";
 import axios from "axios";
 
 export const config: Config = {
-  path: "/eb-get-event-by-id/:event_id",
+  path: "/api/eb-get-event-by-id/:event_id",
 };
 
 export default async (req: Request, context: Context) => {

@@ -7,15 +7,7 @@ import { httpErrorInterceptor } from './errors/interceptors/http-error.intercept
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-
-const firebaseConfig = { 
-  apiKey: "AIzaSyC33dQ8l8VvWKl5lpf8E2riLlcZM86y0Ig",
-  authDomain: "eventball-cba3e.firebaseapp.com",
-  projectId: "eventball-cba3e",
-  storageBucket: "eventball-cba3e.firebasestorage.app",
-  messagingSenderId: "419477307077",
-  appId: "1:419477307077:web:e6180d61dba932cbdefaac"
-}
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,8 +15,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimations(),
     provideHttpClient(withInterceptors([httpErrorInterceptor])),
-    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
-    { provide: FIREBASE_OPTIONS, useValue: firebaseConfig }
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig }
   ]
 };
