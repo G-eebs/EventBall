@@ -1,59 +1,93 @@
-# EventBall
+# EventBall - events platform
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+EventBall is a serverless events platform website and Android app built using `Angular`, `Netlify functions` and `Capacitor`.
 
-## Development server
+**There is a hosted site [here](https://eventball.netlify.app)**
 
-To start a local development server, run:
+**A prebuilt Android debug apk can be downloaded from the repo. Click the `EventBall-debug.apk` file or [here](EventBall-debug.apk) then in the top right either the download button `↓` , or `...` then download.**  
+This can then be installed on your Android device or emulator of choice.
+If installing the apk using an emulator with Android Studio I recommend navigating to the GitHub repo on the emulated device and downloading from there.
 
+## Summary
+
+The home page displays upcoming events from the `EventBrite` API in date order with options to view more details or sign up.
+
+Selecting more info presents the user with full details on the event and the option to attend.
+
+Selecting attend prompts the user to submit their name and email to sign up, with the ability to add the event to various calendars once they're signed up.
+
+The EventBall heading in the toolbar can be clicked at any time to navigate back to the homepage.
+
+Staff can sign in to create and manage events using the button in the top right. Sign in is available using email or Google through `Firebase` authentication.  
+Test account email and password are:  
+`test@test.test`  
+`test12`
+
+Once signed in, clicking the button in the top right shows options to create an event or sign out.
+
+The create event page presents fields for the event name and description as well as dates and online or physical locations. Once all details are filled out and the event is created it can be viewed directly as well as appearing on the home page.
+
+If the user is signed in, they can delete any event created through EventBall on the event details page.
+
+
+## Local setup
+
+Node.js version: `23.1.0`
+
+First clone the repository:
 ```bash
-ng serve
+git clone https://github.com/G-eebs/EventBall.git
+```
+And navigate into it:
+```bash
+cd EventBall
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+Next install the required packages:
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+You will need [Angular CLI](https://github.com/angular/angular-cli) in order to compile the app:
 ```bash
-ng generate --help
+npm install -g @angular/cli
 ```
 
-## Building
+As this is a serverless application it uses Netlify functions to make API calls in order to protect the EventBrite API key.  
+To run the project locally [Netlify CLI](https://docs.netlify.com/cli/get-started) must be installed:
+```bash
+npm install -g netlify-cli
+```
 
-To build the project run:
-
+An [EventBrite](https://www.eventbrite.com/) account will be required in order to make requests to their API.  
+Once you have created one and signed in, click your account in the top right and navigate to `Account settings` -> `Developer Links` -> `API Keys` or click [here](https://www.eventbrite.com/account-settings/apps).  
+Now select Create API Key and fill in the details as you like to create the key.  
+On the API Keys page select `Show API key, client secret and tokens` then copy your private token.  
+Back in the project files open `netlify.toml` and add the following to the end, replacing `__TOKEN__` with your private token:
+```
+[context.dev.environment]  
+  EVENTBRITE_PRIVATE_TOKEN = "__TOKEN__"
+```
+Now run the following to build the app:
 ```bash
 ng build
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
+And finally to run the dev server:
 ```bash
-ng test
+netlify dev
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+This configuration will use the existing Firebase project's authorisation and users so the test account details will work. If you want to use a new [Firebase project](https://console.firebase.google.com/), change the firebaseConfig in the `src/environments` files to the one from your new project. These configuration objects are safe to put on the frontend as the apiKey and other data are only used to identify the project, not for authorisation.
+### Android
+If you wish to run the Android project locally, first install [Android Studio](https://developer.android.com/studio).  
+Then compile the project:
 ```bash
-ng e2e
+ng build
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Sync files with the Capacitor project:
+```bash
+npx cap sync
+```
+Finally open the project in Android Studio:
+```bash
+npx cap open android
+```
