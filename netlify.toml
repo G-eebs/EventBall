@@ -5,40 +5,8 @@
   directory = "src/netlify-functions"
   node_bundler = "esbuild"
 [[redirects]]
-  from = "/eb-get-events-by-organizer/*"
-  to = "/eb-get-events-by-organizer/:splat"
-  status = 200
-[[redirects]]
-  from = "/eb-get-event-by-id/*"
-  to = "/eb-get-event-by-id/:splat"
-  status = 200
-[[redirects]]
-  from = "/eb-get-event-description-by-id/*"
-  to = "/eb-get-event-description-by-id/:splat"
-  status = 200
-[[redirects]]
-  from = "/eb-post-venue-to-organization/*"
-  to = "/eb-post-venue-to-organization/:splat"
-  status = 200
-[[redirects]]
-  from = "/eb-post-event-to-organization/*"
-  to = "/eb-post-event-to-organization/:splat"
-  status = 200
-[[redirects]]
-  from = "/eb-post-ticket-class-to-event/*"
-  to = "/eb-post-ticket-class-to-event/:splat"
-  status = 200
-[[redirects]]
-  from = "/eb-post-content-to-event/*"
-  to = "/eb-post-content-to-event/:splat"
-  status = 200
-[[redirects]]
-  from = "/eb-post-publish-event/*"
-  to = "/eb-post-publish-event/:splat"
-  status = 200
-[[redirects]]
-  from = "/eb-delete-event-by-id/*"
-  to = "/eb-delete-event-by-id/:splat"
+  from = "/api/*"
+  to = "/api/:splat"
   status = 200
 [[redirects]]
   from = "/*"

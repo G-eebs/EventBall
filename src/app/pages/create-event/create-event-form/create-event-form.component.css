@@ -57,3 +57,7 @@ mat-hint {
 .mat-mdc-progress-spinner {
   --mdc-circular-progress-active-indicator-color: #FFB200;
 }
+
+.mdc-text-field__input::-webkit-calendar-picker-indicator {
+  display: block !important;
+}

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
 import { Observable, firstValueFrom, map, combineLatest} from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class EventsService {
@@ -21,7 +22,7 @@ export class EventsService {
     id: string,
     params: any = this.defaultGetOrganizerEventsParams
   ): Observable<[]> {
-    return this.http.get<any>(`/eb-get-events-by-organizer/${id}`, {
+    return this.http.get<any>(`${environment.apiUrl}/eb-get-events-by-organizer/${id}`, {
       params,
     }).pipe(map(res => res["events"]));
   }
@@ -41,34 +42,34 @@ export class EventsService {
     id: string,
     params: any = this.defaultGetEventParams
   ) {
-    return this.http.get(`/eb-get-event-by-id/${id}`, {
+    return this.http.get(`${environment.apiUrl}/eb-get-event-by-id/${id}`, {
       params,
     });
   }
 
   getEventDescriptionById(id: string) {
-    return this.http.get(`/eb-get-event-description-by-id/${id}`);
+    return this.http.get(`${environment.apiUrl}/eb-get-event-description-by-id/${id}`);
   }
 
 
   postVenueToOrganization(organizationId: string, venue: any) {
-    return this.http.post(`/eb-post-venue-to-organization/${organizationId}`, {venue: venue})
+    return this.http.post(`${environment.apiUrl}/eb-post-venue-to-organization/${organizationId}`, {venue: venue})
   }
 
   postEventToOrganization(organizationId: string, event: any) {
-    return this.http.post(`/eb-post-event-to-organization/${organizationId}`, {event: event})
+    return this.http.post(`${environment.apiUrl}/eb-post-event-to-organization/${organizationId}`, {event: event})
   }
 
   postTicketClassToEvent(eventId: string, ticketClass: any) {
-    return this.http.post(`/eb-post-ticket-class-to-event/${eventId}`, {ticket_class: ticketClass})
+    return this.http.post(`${environment.apiUrl}/eb-post-ticket-class-to-event/${eventId}`, {ticket_class: ticketClass})
   }
 
   postContentToEvent(eventId: string, content: any, version: string = "1") {
-    return this.http.post(`/eb-post-content-to-event/${eventId}/${version}`, content)
+    return this.http.post(`${environment.apiUrl}/eb-post-content-to-event/${eventId}/${version}`, content)
   }
 
   postPublishEvent(eventId: string) {
-    return this.http.post(`/eb-post-publish-event/${eventId}`, null)
+    return this.http.post(`${environment.apiUrl}/eb-post-publish-event/${eventId}`, null)
   }
 
   async postEntireEvent(eventData: any, organizationId: string, organizerId: string) {
@@ -156,7 +157,7 @@ export class EventsService {
   }
 
   deleteEvent(id: string) {
-    return this.http.delete(`/eb-delete-event-by-id/${id}`)
+    return this.http.delete(`${environment.apiUrl}/eb-delete-event-by-id/${id}`)
   }
 
 }

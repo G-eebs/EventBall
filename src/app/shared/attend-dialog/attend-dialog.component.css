@@ -1,5 +1,6 @@
 .attend {
   padding: 0;
+  overflow-wrap: break-word;
 }
 
 .attend-signed-up {

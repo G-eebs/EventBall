@@ -4,6 +4,7 @@ import { MatButton } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon'
 import { EmailFormComponent } from './email-form/email-form.component';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent {
   environmentInjector = inject(EnvironmentInjector)
   googleProvider = new GoogleAuthProvider();
   isSignInSubmitted = signal(false)
+  isNativePlatform = Capacitor.isNativePlatform()
 
   async emailAccountSubmitted(userDetails: any) {
     this.isSignInSuccessful.set(false)
