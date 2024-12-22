@@ -1,5 +1,5 @@
 <header class="toolbar">
-  <a routerLink="" class="title">EventBall</a>
+  <a routerLink="" class="title">{{ currentRoute() === "/" ? "EventBall" : "\u21A9 Home" }}</a>
   <button [matMenuTriggerFor]="userMenu" class="user-button" [class.user-button-signed-in]="currentUser()" >
     @if (!currentUser()) {
       <p class="user-button-login">Sign In</p>

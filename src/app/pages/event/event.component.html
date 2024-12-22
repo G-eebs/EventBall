@@ -1,11 +1,10 @@
 <span class="event-wrapper">
   @if(event && !isDeleteSubmitted()) {
     <section class="event">
-      <div
-        [ngStyle]="{ 'background-image': 'url(' + bannerSrc + ')' }"
-        alt="Event banner image"
-        class="event-banner"
-      ></div>
+      <div class="event-banner">
+        <img [src]="bannerSrc" alt="Event banner image" class="event-banner-image" />
+        <div class="event-banner-blur"></div>
+      </div>
       <h2 class="event-title">{{ event.name.text }}</h2>
       <section class="event-info">
         <div class="event-info-date">

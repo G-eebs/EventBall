@@ -2,7 +2,7 @@ import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { EventsService } from '../../services/events/events.service';
 import { firstValueFrom, Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AsyncPipe, DatePipe, NgStyle } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,7 +14,7 @@ import organizers from '../../../assets/event-brite-organizers.json';
 
 @Component({
   selector: 'app-event',
-  imports: [AsyncPipe, NgStyle, DatePipe, MatProgressSpinner, MatButtonModule],
+  imports: [AsyncPipe, DatePipe, MatProgressSpinner, MatButtonModule],
   templateUrl: './event.component.html',
   styleUrl: './event.component.css',
 })

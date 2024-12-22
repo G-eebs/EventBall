@@ -20,19 +20,31 @@
 }
 
 .event-banner {
-  height: 40vh;
+  width: calc(100% - 1rem);
+  margin: .5rem;
+  position: relative;
+}
+
+.event-banner-image {
   width: 100%;
-  margin: 0;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 .5rem .5rem white inset;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 2rem;
+}
+
+.event-banner-blur {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  border-radius: 1.75rem;
+  box-shadow: 0 0 1rem .5rem rgba(255, 255, 255) inset;
 }
 
 .event-title {
-  margin: .25rem auto 0;
+  margin: 0 auto;
   width: fit-content;
-  max-width: calc(100% - 1.5rem);
+  max-width: calc(100% - 2rem);
   text-align: center;
   padding: .1rem .5rem .25rem;
   border-radius: .5rem;
@@ -119,7 +131,7 @@
 }
 
 .progress-spinner {
-  margin: 1rem;
+  margin: 1.5rem 1rem 1rem;
 }
 
 .mat-mdc-progress-spinner {

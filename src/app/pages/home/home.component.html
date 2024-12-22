@@ -1,5 +1,5 @@
 <section class="featured-events">
-  <h2 class="featured-events-heading">Events Happening Soon!</h2>
+  <h2 class="featured-events-heading">Events Happening Soon</h2>
   @if(sortedEvents$ | async; as events) {
     <ul class="featured-events-list">
       @for(event of events; track event.id) {
