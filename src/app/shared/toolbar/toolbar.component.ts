@@ -1,6 +1,6 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
-import { Router, RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog'; 
 import { MatSnackBar } from '@angular/material/snack-bar'; 
 import { LoginComponent } from '../login-dialog/login-dialog.component';
@@ -18,10 +18,17 @@ export class ToolbarComponent {
   user$ = user(this.auth);
   userSubscription: Subscription;
   currentUser: WritableSignal<User | null> = signal(null)
+  routerEventsSubscription: Subscription
+  currentRoute = signal("")
 
   constructor(private loginDialog: MatDialog, private logoutSnackBar: MatSnackBar, private router: Router) {
     this.userSubscription = this.user$.subscribe((user: User | null) => {
       this.currentUser.set(user)
+    })
+    this.routerEventsSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute.set(event.url)
+      }
     })
   }
 
@@ -50,5 +57,6 @@ export class ToolbarComponent {
 
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
+    this.routerEventsSubscription.unsubscribe();
   }
 }

@@ -24,6 +24,6 @@ export class EventCardComponent {
   }
 
   ngOnInit() {
-    if (this.event().logo) this.bannerSrc = this.event().logo.original.url;
+    if (this.event().logo) this.bannerSrc = this.event().logo.original.url;    
   }
 }
