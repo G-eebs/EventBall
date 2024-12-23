@@ -10,22 +10,22 @@ If installing the apk using an emulator with Android Studio I recommend navigati
 
 ## Summary
 
-The home page displays upcoming events from the `EventBrite` API in date order with options to view more details or sign up.
+The home page displays upcoming events from the `EventBrite` API in date order with options to view more details or sign up to each event.
 
 Selecting more info presents the user with full details on the event and the option to attend.
 
 Selecting attend prompts the user to submit their name and email to sign up, with the ability to add the event to various calendars once they're signed up.
 
-The EventBall heading in the toolbar can be clicked at any time to navigate back to the homepage.
+The EventBall / Home heading in the toolbar can be clicked at any time to navigate back to the homepage.
 
 Staff can sign in to create and manage events using the button in the top right. Sign in is available using email or Google through `Firebase` authentication.  
-Test account email and password are:  
+**Test account email and password are:**  
 `test@test.test`  
 `test12`
 
 Once signed in, clicking the button in the top right shows options to create an event or sign out.
 
-The create event page presents fields for the event name and description as well as dates and online or physical locations. Once all details are filled out and the event is created it can be viewed directly as well as appearing on the home page.
+The create event page presents fields for various event details as well as online or physical locations. Once all details are filled out and the event is created it can be viewed directly as well as appearing on the home page.
 
 If the user is signed in, they can delete any event created through EventBall on the event details page.
 
@@ -53,7 +53,7 @@ You will need [Angular CLI](https://github.com/angular/angular-cli) in order to 
 npm install -g @angular/cli
 ```
 
-As this is a serverless application it uses Netlify functions to make API calls in order to protect the EventBrite API key.  
+As a serverless application, thois project uses Netlify functions to make API calls in order to protect the EventBrite API key.  
 To run the project locally [Netlify CLI](https://docs.netlify.com/cli/get-started) must be installed:
 ```bash
 npm install -g netlify-cli
@@ -76,7 +76,7 @@ And finally to run the dev server:
 ```bash
 netlify dev
 ```
-This configuration will use the existing Firebase project's authorisation and users so the test account details will work. If you want to use a new [Firebase project](https://console.firebase.google.com/), change the firebaseConfig in the `src/environments` files to the one from your new project. These configuration objects are safe to put on the frontend as the apiKey and other data are only used to identify the project, not for authorisation.
+This configuration will use the existing Firebase project's authorisation and users so the test account details will work. If you want to use a new [Firebase project](https://console.firebase.google.com/), change the firebaseConfig in the `src/environments` files to the one from your Firebase project. These configuration objects are safe to put on the frontend as the apiKey and other data are only used to identify the project, not for authorisation.
 ### Android
 If you wish to run the Android project locally, first install [Android Studio](https://developer.android.com/studio).  
 Then compile the project:
@@ -91,3 +91,4 @@ Finally open the project in Android Studio:
 ```bash
 npx cap open android
 ```
+In Android Studio you can run the app on your device or emulator using the device manager on the right bar and the run buttons in the top right.
