@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "419477307077",
+    "project_id": "eventball-cba3e",
+    "storage_bucket": "eventball-cba3e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419477307077:android:488856b92f346447defaac",
+        "android_client_info": {
+          "package_name": "app.netlify.eventball"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419477307077-8eatk6muj3fkqeak08ffq9nnp72qqcv8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsqV3ZeTcy8KVd2TwWgLALlRRYceXGp1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "419477307077-8eatk6muj3fkqeak08ffq9nnp72qqcv8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
